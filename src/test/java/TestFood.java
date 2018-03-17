@@ -14,12 +14,16 @@ public class TestFood {
     }
 
     @Test
-    public void hasName() {
+    public void canGetName() {
         assertEquals("Banana", food1.getName());
     }
 
     @Test
-    public void hasCalories() {
+    public void canGetCalories() {
         assertEquals(100, food1.getCalories(), 0.01);
     }
+
+    // Add tests for setters???
+
+    
 }
