@@ -40,4 +40,12 @@ public class Day {
     public void setMeals(ArrayList<Meal> meals) {
         this.meals = meals;
     }
+
+    public int getMealCount() {
+        return this.meals.size();
+    }
+
+    public void addMeal(Meal meal) {
+        this.meals.add(meal);
+    }
 }
