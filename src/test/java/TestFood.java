@@ -25,5 +25,5 @@ public class TestFood {
 
     // Add tests for setters???
 
-    
+
 }

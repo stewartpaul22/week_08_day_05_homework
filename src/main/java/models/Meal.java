@@ -51,4 +51,20 @@ public class Meal {
     public void setMealType(MealType mealType) {
         this.mealType = mealType;
     }
+
+    public int getFoodCount() {
+        return this.foods.size();
+    }
+
+    public void addFood(Food food) {
+        this.foods.add(food);
+    }
+
+    public double getCalorieTotal() {
+        double total = 0;
+        for (Food food : this.foods) {
+            total += food.getCalories();
+        }
+        return total;
+    }
 }
