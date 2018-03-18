@@ -52,6 +52,10 @@ public class Runner {
         List<Day> allDays = DBHelper.getAll(Day.class);
 
         // Return all Meal for a given Day
+        List<Meal> dayMeals = DBHelper.getAllMealsForDay(day1);
+
+        // Return all Meal for a given Date
+        List<Meal> dateMeals = DBHelper.getAllMealsForDate(new GregorianCalendar(2018, 3, 10));
 
         // Return all Food for a given Meal
         // Does this make sense to do?

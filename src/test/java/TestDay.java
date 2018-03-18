@@ -5,7 +5,9 @@ import models.Meal;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -37,5 +39,19 @@ public class TestDay {
         assertEquals(1, day1.mealCount());
     }
 
+//    @Test
+//    public void canGetMealsForGivenDate() {
+//        GregorianCalendar testDate = new GregorianCalendar(2018, 3, 10);
+//
+//        meal1.addFood(food1);
+//        meal1.addFood(food2);
+//        day1.addMeal(meal1);
+//
+//        List<Meal> meals = new ArrayList<Meal>();
+//        meals.add(meal1);
+//
+//        assertEquals(meals, day1.getMeals());
+//        List<Meal> testMeals = Day.mealsForDate(testDate);
+//    }
 
 }

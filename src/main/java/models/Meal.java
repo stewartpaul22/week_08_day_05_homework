@@ -1,6 +1,8 @@
 package models;
 
 import enums.MealType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -46,7 +48,8 @@ public class Meal {
         this.description = description;
     }
 
-    @OneToMany(mappedBy = "meal", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "meal", fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     public List<Food> getFoods() {
         return foods;
     }

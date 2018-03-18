@@ -1,5 +1,6 @@
 package db;
 
+import models.Day;
 import models.Food;
 import models.Meal;
 import org.hibernate.Criteria;
@@ -7,6 +8,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class DBHelper {
@@ -105,8 +107,30 @@ public class DBHelper {
         return result;
     }
 
+    public static List<Meal> getAllMealsForDay(Day day){
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Meal> results = null;
+        Criteria cr = session.createCriteria(Meal.class);
+        cr.add(Restrictions.eq("day", day));
+        results = getList(cr);
+        return results;
+    }
+
+
+    public static List<Meal> getAllMealsForDate(GregorianCalendar date){
+        session = HibernateUtil.getSessionFactory().openSession();
+        List<Meal> results = null;
+        Criteria cr = session.createCriteria(Meal.class);
+        Day tempDay = new Day(date);
+
+        cr.add(Restrictions.eq("day", tempDay));
+        results = getList(cr);
+        return results;
+    }
+
     public static void addFoodToMeal(Food food, Meal meal) {
         meal.addFood(food);
         saveOrUpdate(meal);
     }
+
 }

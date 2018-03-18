@@ -1,5 +1,8 @@
 package models;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -23,6 +26,7 @@ public class Day {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -56,4 +60,17 @@ public class Day {
     public void addMeal(Meal meal) {
         this.meals.add(meal);
     }
+
+//    public static List<Meal> mealsForDate(GregorianCalendar date) {
+//        List<Meal> tempMeals = null;
+//
+//        for (Meal meal : meals) {
+//            if (meal.getDay().getDayDate() == date) {
+//                tempMeals.add(meal);
+//            }
+//            return tempMeals;
+//        }
+//
+//        return null;
+//    }
 }
