@@ -1,22 +1,27 @@
 import enums.MealType;
+import models.Day;
 import models.Food;
 import models.Meal;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.GregorianCalendar;
+
 import static org.junit.Assert.assertEquals;
 
 public class TestMeal {
 
+    private Day day1;
     private Meal meal1;
     private Food food1;
     private Food food2;
 
     @Before
     public void setUp() throws Exception {
-        meal1 = new Meal("Soup and roll", MealType.MAINMEAL);
-        food1 = new Food("Lentil soup", 190);
-        food2 = new Food("Roll", 90);
+        day1 = new Day(new GregorianCalendar(2018, 3, 16));
+        meal1 = new Meal("Soup and roll", MealType.MAINMEAL, day1);
+        food1 = new Food("Lentil soup", 190, meal1);
+        food2 = new Food("Roll", 90, meal1);
     }
 
     @Test

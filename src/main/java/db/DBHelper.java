@@ -1,5 +1,7 @@
 package db;
 
+import models.Food;
+import models.Meal;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.*;
@@ -101,5 +103,10 @@ public class DBHelper {
             session.close();
         }
         return result;
+    }
+
+    public static void addFoodToMeal(Food food, Meal meal) {
+        meal.addFood(food);
+        saveOrUpdate(meal);
     }
 }

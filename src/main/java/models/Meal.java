@@ -14,18 +14,21 @@ public class Meal {
     private String description;
     private List<Food> foods;
     private MealType mealType;
+    private Day day;
 
     public Meal() {
     }
 
-    public Meal(String description, MealType mealType) {
+    public Meal(String description, MealType mealType, Day day) {
         this.description = description;
         this.mealType = mealType;
         this.foods = new ArrayList<Food>();
+        this.day = day;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -43,7 +46,7 @@ public class Meal {
         this.description = description;
     }
 
-    @OneToMany(mappedBy = "meal", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "meal", fetch = FetchType.LAZY)
     public List<Food> getFoods() {
         return foods;
     }
@@ -59,6 +62,16 @@ public class Meal {
 
     public void setMealType(MealType mealType) {
         this.mealType = mealType;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "day_id")
+    public Day getDay() {
+        return day;
+    }
+
+    public void setDay(Day day) {
+        this.day = day;
     }
 
     public int foodCount() {

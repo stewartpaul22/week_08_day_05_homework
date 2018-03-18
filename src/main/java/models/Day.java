@@ -1,13 +1,17 @@
 package models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
+@Entity
+@Table(name = "days")
 public class Day {
 
     private int id;
     private GregorianCalendar dayDate;
-    private ArrayList<Meal> meals;
+    private List<Meal> meals;
 
     public Day() {
     }
@@ -17,6 +21,8 @@ public class Day {
         this.meals = new ArrayList<Meal>();
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -25,6 +31,7 @@ public class Day {
         this.id = id;
     }
 
+    @Column(name = "date")
     public GregorianCalendar getDayDate() {
         return dayDate;
     }
@@ -33,15 +40,16 @@ public class Day {
         this.dayDate = dayDate;
     }
 
-    public ArrayList<Meal> getMeals() {
+    @OneToMany(mappedBy = "day", fetch = FetchType.EAGER)
+    public List<Meal> getMeals() {
         return meals;
     }
 
-    public void setMeals(ArrayList<Meal> meals) {
+    public void setMeals(List<Meal> meals) {
         this.meals = meals;
     }
 
-    public int getMealCount() {
+    public int mealCount() {
         return this.meals.size();
     }
 

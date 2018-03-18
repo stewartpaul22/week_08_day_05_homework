@@ -19,9 +19,9 @@ public class TestDay {
     @Before
     public void setUp() throws Exception {
         day1 = new Day(new GregorianCalendar(2018, 3, 16));
-        meal1 = new Meal("Soup and roll", MealType.MAINMEAL);
-        food1 = new Food("Lentil soup", 190);
-        food2 = new Food("Roll", 90);
+        meal1 = new Meal("Soup and roll", MealType.MAINMEAL, day1);
+        food1 = new Food("Lentil soup", 190, meal1);
+        food2 = new Food("Roll", 90, meal1);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class TestDay {
         meal1.addFood(food1);
         meal1.addFood(food2);
         day1.addMeal(meal1);
-        assertEquals(1, day1.getMealCount());
+        assertEquals(1, day1.mealCount());
     }
 
 

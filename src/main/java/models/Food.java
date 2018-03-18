@@ -14,9 +14,10 @@ public class Food {
     public Food() {
     }
 
-    public Food(String name, double calories) {
+    public Food(String name, double calories, Meal meal) {
         this.name = name;
         this.calories = calories;
+        this.meal = meal;
     }
 
     @Id
@@ -40,7 +41,7 @@ public class Food {
     }
 
     @ManyToOne
-    @JoinColumn(name = "meal_id", nullable = true)
+    @JoinColumn(name = "meal_id", nullable = false)
     public Meal getMeal() {
         return meal;
     }
