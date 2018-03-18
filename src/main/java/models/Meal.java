@@ -2,13 +2,17 @@ package models;
 
 import enums.MealType;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
+@Entity
+@Table(name = "meals")
 public class Meal {
 
     private int id;
     private String description;
-    private ArrayList<Food> foods;
+    private List<Food> foods;
     private MealType mealType;
 
     public Meal() {
@@ -20,6 +24,8 @@ public class Meal {
         this.foods = new ArrayList<Food>();
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -28,6 +34,7 @@ public class Meal {
         this.id = id;
     }
 
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -36,14 +43,16 @@ public class Meal {
         this.description = description;
     }
 
-    public ArrayList<Food> getFoods() {
+    @OneToMany(mappedBy = "meal", fetch = FetchType.EAGER)
+    public List<Food> getFoods() {
         return foods;
     }
 
-    public void setFoods(ArrayList<Food> foods) {
+    public void setFoods(List<Food> foods) {
         this.foods = foods;
     }
 
+    @Column(name = "meal_type")
     public MealType getMealType() {
         return mealType;
     }
@@ -52,7 +61,7 @@ public class Meal {
         this.mealType = mealType;
     }
 
-    public int getFoodCount() {
+    public int foodCount() {
         return this.foods.size();
     }
 
@@ -60,7 +69,7 @@ public class Meal {
         this.foods.add(food);
     }
 
-    public double getCalorieTotal() {
+    public double calculateCalorieTotal() {
         double total = 0;
         for (Food food : this.foods) {
             total += food.getCalories();

@@ -40,7 +40,7 @@ public class Food {
     }
 
     @ManyToOne
-    @JoinColumn(name = "meal_id", nullable = false)
+    @JoinColumn(name = "meal_id", nullable = true)
     public Meal getMeal() {
         return meal;
     }

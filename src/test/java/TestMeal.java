@@ -33,13 +33,13 @@ public class TestMeal {
     public void canAddFoodToMeal() {
         meal1.addFood(food1);
         meal1.addFood(food2);
-        assertEquals(2, meal1.getFoodCount());
+        assertEquals(2, meal1.foodCount());
     }
 
     @Test
     public void canGetMealCalorieTotal() {
         meal1.addFood(food1);
         meal1.addFood(food2);
-        assertEquals(280.00, meal1.getCalorieTotal(), 0.01);
+        assertEquals(280.00, meal1.calculateCalorieTotal(), 0.01);
     }
 }
