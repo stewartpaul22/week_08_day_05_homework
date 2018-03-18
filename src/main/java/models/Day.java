@@ -61,6 +61,15 @@ public class Day {
         this.meals.add(meal);
     }
 
+    public double calorieTotal() {
+        double dayCalories = 0.00;
+        for (Meal meal : this.meals) {
+            dayCalories += meal.calculateCalorieTotal();
+        }
+        return dayCalories;
+    }
+
+
 //    public static List<Meal> mealsForDate(GregorianCalendar date) {
 //        List<Meal> tempMeals = null;
 //

@@ -61,6 +61,7 @@ public class Runner {
         // Does this make sense to do?
 
         // Return calorie count for a given day
+        Double dailyCalories = DBHelper.dailyCalorieTotal(day1);
 
         // Return average calorie count for a given month
 

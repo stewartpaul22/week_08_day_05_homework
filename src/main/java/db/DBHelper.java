@@ -8,6 +8,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -116,21 +117,38 @@ public class DBHelper {
         return results;
     }
 
-
     public static List<Meal> getAllMealsForDate(GregorianCalendar date){
         session = HibernateUtil.getSessionFactory().openSession();
-        List<Meal> results = null;
-        Criteria cr = session.createCriteria(Meal.class);
-        Day tempDay = new Day(date);
 
-        cr.add(Restrictions.eq("day", tempDay));
-        results = getList(cr);
+        List<Meal> results = new ArrayList<Meal>();
+        List<Meal> allMeals = getAll(Meal.class);
+
+        for (Meal meal : allMeals) {
+            if (meal.getDay().getDayDate().equals(date)) {
+                results.add(meal);
+            }
+        }
         return results;
     }
 
     public static void addFoodToMeal(Food food, Meal meal) {
         meal.addFood(food);
         saveOrUpdate(meal);
+    }
+
+    public static Double dailyCalorieTotal(Day day) {
+        session = HibernateUtil.getSessionFactory().openSession();
+
+        double dayCalories = 0.00;
+
+        List<Meal> results = new ArrayList<Meal>();
+        List<Meal> allMeals = getAll(Meal.class);
+
+        for (Meal meal : allMeals) {
+            dayCalories += meal.calculateCalorieTotal();
+        }
+
+        return dayCalories;
     }
 
 }

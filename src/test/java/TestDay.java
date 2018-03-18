@@ -22,8 +22,8 @@ public class TestDay {
     public void setUp() throws Exception {
         day1 = new Day(new GregorianCalendar(2018, 3, 16));
         meal1 = new Meal("Soup and roll", MealType.MAINMEAL, day1);
-        food1 = new Food("Lentil soup", 190, meal1);
-        food2 = new Food("Roll", 90, meal1);
+        food1 = new Food("Lentil soup", 190.00, meal1);
+        food2 = new Food("Roll", 90.00, meal1);
     }
 
     @Test
@@ -39,7 +39,15 @@ public class TestDay {
         assertEquals(1, day1.mealCount());
     }
 
-//    @Test
+    @Test
+    public void canCalculateDailyCalories() {
+        meal1.addFood(food1);
+        meal1.addFood(food2);
+        day1.addMeal(meal1);
+        assertEquals(280.00, day1.calorieTotal(), 0.01);
+    }
+
+    //    @Test
 //    public void canGetMealsForGivenDate() {
 //        GregorianCalendar testDate = new GregorianCalendar(2018, 3, 10);
 //
