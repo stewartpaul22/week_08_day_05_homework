@@ -11,16 +11,19 @@ public class Runner {
 
     public static void main(String[] args) {
 
+        // Save Day
         Day day1 = new Day(new GregorianCalendar(2018, 3, 10));
         DBHelper.saveOrUpdate(day1);
         Day day2 = new Day(new GregorianCalendar(2018, 3, 18));
         DBHelper.saveOrUpdate(day2);
 
+        // Save Meal
         Meal meal1 = new Meal("Lentil soup and roll", MealType.MAINMEAL, day1);
         DBHelper.saveOrUpdate(meal1);
         Meal meal2 = new Meal("Banana", MealType.SNACK, day1);
         DBHelper.saveOrUpdate(meal2);
 
+        // Save Food
         Food food1 = new Food("Lentil Soup", 190, meal1);
         Food food2 = new Food("White bread roll", 90, meal1);
         Food food3 = new Food("Banana", 80, meal2);
@@ -28,14 +31,34 @@ public class Runner {
         DBHelper.save(food2);
         DBHelper.save(food3);
 
-//        DBHelper.addFoodToMeal(food1, meal1);
-//        DBHelper.addFoodToMeal(food2, meal1);
+        // Delete Day
 
+        // Delete Meal
+
+        // Delete Food
+        DBHelper.delete(food3);
+
+        // Update Day
+
+        // Update Meal
+
+        // Update Food
+        food2.setName("Brown bread roll");
+        DBHelper.saveOrUpdate(food2);
+
+        // List all from each table
         List<Food> allFoodItems = DBHelper.getAll(Food.class);
         List<Meal> allMeals = DBHelper.getAll(Meal.class);
         List<Day> allDays = DBHelper.getAll(Day.class);
 
+        // Return all Meal for a given Day
 
+        // Return all Food for a given Meal
+        // Does this make sense to do?
+
+        // Return calorie count for a given day
+
+        // Return average calorie count for a given month
 
     }
 
