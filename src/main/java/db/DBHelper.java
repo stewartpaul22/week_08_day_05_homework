@@ -108,15 +108,6 @@ public class DBHelper {
         return result;
     }
 
-    public static List<Meal> getAllMealsForDay(Day day){
-        session = HibernateUtil.getSessionFactory().openSession();
-        List<Meal> results = null;
-        Criteria cr = session.createCriteria(Meal.class);
-        cr.add(Restrictions.eq("day", day));
-        results = getList(cr);
-        return results;
-    }
-
     public static List<Meal> getAllMealsForDate(GregorianCalendar date){
         session = HibernateUtil.getSessionFactory().openSession();
 
@@ -131,24 +122,18 @@ public class DBHelper {
         return results;
     }
 
-    public static void addFoodToMeal(Food food, Meal meal) {
-        meal.addFood(food);
-        saveOrUpdate(meal);
-    }
-
-    public static Double dailyCalorieTotal(Day day) {
+    public static Double dateCalorieTotal(GregorianCalendar date) {
         session = HibernateUtil.getSessionFactory().openSession();
 
-        double dayCalories = 0.00;
+        double dateCalories = 0.00;
 
-        List<Meal> results = new ArrayList<Meal>();
         List<Meal> allMeals = getAll(Meal.class);
 
         for (Meal meal : allMeals) {
-            dayCalories += meal.calculateCalorieTotal();
+            if (meal.getDay().getDayDate().equals(date)) {
+                dateCalories += meal.calculateCalorieTotal();
+            }
         }
-
-        return dayCalories;
+        return dateCalories;
     }
-
 }

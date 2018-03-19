@@ -22,14 +22,22 @@ public class Runner {
         DBHelper.saveOrUpdate(meal1);
         Meal meal2 = new Meal("Banana", MealType.SNACK, day1);
         DBHelper.saveOrUpdate(meal2);
+        Meal meal3 = new Meal("Fish and chips with mushy peas", MealType.MAINMEAL, day2);
+        DBHelper.saveOrUpdate(meal3);
 
         // Save Food
         Food food1 = new Food("Lentil Soup", 190, meal1);
         Food food2 = new Food("White bread roll", 90, meal1);
         Food food3 = new Food("Banana", 80, meal2);
+        Food food4 = new Food("Battered Cod", 280, meal3);
+        Food food5 = new Food("Chips", 200, meal3);
+        Food food6 = new Food("Mushy peas", 80, meal3);
         DBHelper.save(food1);
         DBHelper.save(food2);
         DBHelper.save(food3);
+        DBHelper.save(food4);
+        DBHelper.save(food5);
+        DBHelper.save(food6);
 
         // Delete Day
 
@@ -51,17 +59,14 @@ public class Runner {
         List<Meal> allMeals = DBHelper.getAll(Meal.class);
         List<Day> allDays = DBHelper.getAll(Day.class);
 
-        // Return all Meal for a given Day
-        List<Meal> dayMeals = DBHelper.getAllMealsForDay(day1);
-
         // Return all Meal for a given Date
-        List<Meal> dateMeals = DBHelper.getAllMealsForDate(new GregorianCalendar(2018, 3, 10));
+        List<Meal> dateMeals = DBHelper.getAllMealsForDate(new GregorianCalendar(2018, 3, 18));
 
         // Return all Food for a given Meal
         // Does this make sense to do?
 
-        // Return calorie count for a given day
-        Double dailyCalories = DBHelper.dailyCalorieTotal(day1);
+        // Return calorie count for a given date
+        Double dateCalories = DBHelper.dateCalorieTotal(new GregorianCalendar(2018, 3, 18));
 
         // Return average calorie count for a given month
 
