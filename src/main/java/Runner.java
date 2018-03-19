@@ -40,6 +40,7 @@ public class Runner {
         DBHelper.save(food6);
 
         // Delete Day
+        //DBHelper.delete(day1);
 
         // Delete Meal
 

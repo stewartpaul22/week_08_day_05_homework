@@ -44,7 +44,7 @@ public class Day {
         this.dayDate = dayDate;
     }
 
-    @OneToMany(mappedBy = "day", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "day", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     public List<Meal> getMeals() {
         return meals;
     }
@@ -69,17 +69,4 @@ public class Day {
         return dayCalories;
     }
 
-
-//    public static List<Meal> mealsForDate(GregorianCalendar date) {
-//        List<Meal> tempMeals = null;
-//
-//        for (Meal meal : meals) {
-//            if (meal.getDay().getDayDate() == date) {
-//                tempMeals.add(meal);
-//            }
-//            return tempMeals;
-//        }
-//
-//        return null;
-//    }
 }
